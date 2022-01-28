@@ -32,7 +32,7 @@ class User
     private $profile;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="users")
+     * @ORM\ManyToOne(targetEntity=UserGroup::class, inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
     private $userGroup;
@@ -81,12 +81,12 @@ class User
         return $this;
     }
 
-    public function getUserGroup(): ?Group
+    public function getUserGroup(): ?UserGroup
     {
         return $this->userGroup;
     }
 
-    public function setUserGroup(?Group $userGroup): self
+    public function setUserGroup(?UserGroup $userGroup): self
     {
         $this->userGroup = $userGroup;
 
