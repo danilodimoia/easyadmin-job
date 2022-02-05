@@ -1,27 +1,77 @@
 # easyadmin-job
 You can clone this repo and use it as boilerplate.
 
-You can see the desidered layout. This is for INDEX page:
+This App has these modules: "User", "Activity", "Group" and "Documentation". 
+To get an idea on how those modules are organized here you can see the DB schema:
+![EA App database schema](public/easyadmin-job-db-schema.png)
+
+Each module has to have an item on TOP menu. So TOP menu has these items: "USER", "GROUP", "ACTIVITY" and "DOCUMENTATION".
+
+## The INDEX page
+You can get an idea looking at this mockup: 
 ![The desidered layout](public/index_grid.png)
 
-And this is for DETAIL page:
+Click on each item on TOP menu triggers two actions:
+* a CSS class "active" (or equivalent) is added on the item. In the above screen, the item is pink colored)
+* it goes to the related INDEX page. In this case, it goes to USER INDEX page.
+
+To be clear, I recap the actions with each TOP menu item:
+* click on "USER" top menu item: "USER" item gets "active" CSS and destination page is USER::INDEX page. The INDEX page shows all users from User model.
+* click on "GROUP" top menu item: "GROUP" item gets "active" CSS and destination page is GROUP::INDEX page. The INDEX page shows all groups from UserGroup model.
+* click on "ACTIVITY" top menu item: "ACTIVTY" item gets "active" CSS and destination page is ACTIVITY::INDEX page. The INDEX page shows all activities from Activity model.
+* click on "DOCUMENTATION" top menu item: "DOCUMENTATION" item gets "active" CSS and destination page is DOCUMENTATION::INDEX page. The DOCUMENTATION page shows all Document from UserGroup model.
+* MEGA MENU has only to show a mega menu on click. To do in next milestone
+
+When click on "update" button on a single record in INDEX page, for example when you click on "update" of "User 1", the APP goes to the DETAIL page.
+
+## The DETAIL page
+The desidered layout for DETAIL page is this:
 ![The desidered layout](public/user_detail.png)
 
-As you can see I need a layout with menu on top, rather than on sidebar as displayed in default EA admin.
+This is an example for DETAIL page of "User" module. You know that we're in "User" module thanks to pink colored "USER" top menu item.
+The goal of DETAIL page is to show and modify related values about the current module.
+For "User" module, for example, we have this additional infos: 
+* **User detail**, the default related info. It show values from User model. By default this item is active, when you arrive from INDEX page
+* **Profile detail**, that shows values from UserProfile model where User.id = UserProfile.user_id
+* **Group**, that shows values from UserGroup model where User.group_id = UserGroup.id
+* **Documentation**, that shows values from Documentation model where User.documentation_id = Documentation.id
+* **Activities**, that shows values from Activities model where user_id = activity_id using a joining table due the ManyToMany relation
 
+What happens when you click on each sidebar menu item:
+* click on **User detail** shows current User model form. "User detail" item gets "active" CSS class
+* click on **Profile detail** shows UserProfile model form related to current User. "Profile detail" item gets "active" CSS class
+* click on **Group** shows UserGroup model form related to current User. "Group" item gets "active" CSS class
+* click on **Documentation** shows Documentation model form for current User. "Documentation" item gets "active" CSS class
+* click on **Activities** shows Activities models forms (be careful, they are many!) for current User. "Activities" item gets "active" CSS class
 
-In the DETAIL page I also need a sidebar menu, where each item/link routes to a custom controller and become active.
+The sidebar menu, in every module DETAIL page (User, Group, Activity, Documentation) has to be decoupled from top menu and customizable in a easy way. 
 
-In this boilerplate app I've added following entities:
-* User
-* UserProfile
-* Documentation
-* Activity
+The concept of DETAIL page in "User" module, as you can see on the screenshot, is extensible to each other modules. So when you click on "GROUP" on top menu, the item will be "active" and you'll go to GROUP DETAIL page showing a different sidebar menu.
+Clicking on "ACTIVITY"? "ACTIVITY" menu item gets "active" CSS class, you go to ACTIVITY DETAIL page and have a different sidebar menu.
+Same for "GROUP" and "DOCUMENTATION" top menu items.
 
-with same fake data in DB.
+So, a top menu item represents a module; click on it it gets you to the module DETAIL page. In that module DETAIL page you have a different sidebar menu depending on module. 
 
-What I need:
-* I've uploaded 2 views (INDEX and DETAIL) just to clarify the layout, but what I really need is only the DETAIL page
+What you see in each module's sidebar in DETAIL page, arriving from related INDEX page:
+* in USER module, as we have already seen, we have these items in sidebar menu:
+    * User detail (User model)
+    * Profile detail (UserProfile model)
+    * Group (related UserGroup model)
+    * Documentation (related Documentation model)
+    * Activity (related Activity models)
+* in GROUP module we have these items in sidebar menu:
+    * General (current UserGroup model)
+    * Users (User models related to current UserGroup)
+* in ACTIVITY module we have these items in sidebar menu:
+    * General (current Activity model)
+    * Users (User models related to current Activity)
+* in DOCUMENTATION module we have these items in sidebar menu:
+    * General (current Documentation model)
+    * Users (User models related to current Documentation)
+To prove me sidebar customization you have to display each sidebar menu with a different background color. 
+
+## Requested tasks
+I really need is only the DETAIL page
 * The main menu has to be on top, rather than on sidebar
 * The main menu has to use MenuItem class and other offered EA classes
 * The layout has to be responsive 
