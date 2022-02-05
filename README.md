@@ -71,8 +71,9 @@ What you see in each module's sidebar in DETAIL page, arriving from related INDE
 To prove me sidebar customization you have to display each sidebar menu with a different background color. 
 
 ## Mobile view
-What I need on top menu when you are in INDEX page: [Look at this video](/public/mobile_user_index_page.mp4)
-What I need on top menu when you are in DETAIL page: [Look at this video](/public/mobile_user_detail_page.mp4)
+I did a video to show what I need on top menu when you are in INDEX page: [download the video from here](/public/mobile_user_index_page.mp4)
+
+I also recorded a video show what I need on top menu and on sidebar menu where you are in DETAIL page: [download the video from here](/public/mobile_user_detail_page.mp4)
 
 ## Requested tasks
 I really need is only the DETAIL page
