@@ -70,6 +70,10 @@ What you see in each module's sidebar in DETAIL page, arriving from related INDE
     * Users (User models related to current Documentation)
 To prove me sidebar customization you have to display each sidebar menu with a different background color. 
 
+## Mobile view
+What I need on top menu when you are in INDEX page: [Look at this video](/public/mobile_user_index_page.mp4)
+What I need on top menu when you are in DETAIL page: [Look at this video](/public/mobile_user_detail_page.mp4)
+
 ## Requested tasks
 I really need is only the DETAIL page
 * The main menu has to be on top, rather than on sidebar
